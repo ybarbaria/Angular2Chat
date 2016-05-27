@@ -66,6 +66,14 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -167,6 +175,10 @@
     <Compile Include="Models\Validation\ModelStateWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\main\main.component.html" />
+    <Content Include="app\components\login\login.component.html" />
+    <Content Include="app\components\signup\signup.component.css" />
+    <Content Include="app\components\signup\signup.component.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -185,6 +197,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="app\components\login\login.component.css" />
     <None Include="readme.md" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
@@ -230,6 +243,9 @@
     <Content Include="Views\Shared\DefineAngular.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\components\channel\" />
+    <Folder Include="app\components\chat\" />
+    <Folder Include="app\components\logout\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +257,9 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\boottodolist.ts" />
+    <TypeScriptCompile Include="app\components\main\main.component.ts" />
+    <TypeScriptCompile Include="app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="app\components\signup\signup.component.ts" />
     <TypeScriptCompile Include="app\components\todolist\todolist.component.ts" />
     <TypeScriptCompile Include="app\services\app.service.todolist.ts" />
     <TypeScriptCompile Include="app\utils\HttpHelpers.ts" />
@@ -303,7 +322,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -7,6 +7,7 @@ import {AppServiceTodoList} from '../../services/app.service.todolist';
     templateUrl: './app/components/todolist/todolist.component.html',
     styleUrls: ['./app/components/todolist/todolist.component.css']
 })
+
 export class TodoListComponent {
     constructor(private _appService: AppServiceTodoList) {
     }
