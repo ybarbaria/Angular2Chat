@@ -13,6 +13,8 @@ var router_1 = require('@angular/router');
 var login_component_1 = require('../login/login.component');
 var todolist_component_1 = require('../todolist/todolist.component');
 var signup_component_1 = require('../signup/signup.component');
+var chat_component_1 = require('../chat/chat.component');
+var channel_component_1 = require('../channel/channel.component');
 var MainComponent = (function () {
     function MainComponent() {
         this.title = 'My Chat';
@@ -27,7 +29,9 @@ var MainComponent = (function () {
         router_1.Routes([
             { path: '/signup', component: signup_component_1.SignupComponent },
             { path: '/todolist', component: todolist_component_1.TodoListComponent },
-            { path: '/', component: login_component_1.LoginComponent }
+            { path: '/login', component: login_component_1.LoginComponent },
+            { path: '/chat', component: chat_component_1.ChatComponent },
+            { path: '/channel', component: channel_component_1.ChannelComponent }
         ]), 
         __metadata('design:paramtypes', [])
     ], MainComponent);

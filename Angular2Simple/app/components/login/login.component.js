@@ -9,38 +9,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
 var router_1 = require('@angular/router');
+var app_domain_users_1 = require('../../domain/app.domain.users');
+var app_domain_result_1 = require('../../domain/app.domain.result');
+var app_service_users_1 = require('../../services/app.service.users');
 var LoginComponent = (function () {
-    function LoginComponent(fb, _router) {
-        var _this = this;
+    /**
+     * Constructeur du composant de login
+     * @param {Router} public _router
+     * @param {UserService} public userService
+     */
+    function LoginComponent(_router, userService) {
         this._router = _router;
-        this.passwordStrength = 0;
-        this.username = fb.control('', common_1.Validators.required);
-        this.password = fb.control('', common_1.Validators.required);
-        this.userForm = fb.group({
-            username: this.username,
-            password: this.password
-        });
-        this.password.valueChanges.subscribe(function (newValue) {
-            _this.passwordStrength = newValue.length;
-        });
+        this.userService = userService;
+        this._user = new app_domain_users_1.User('', '');
     }
-    LoginComponent.prototype.login = function (event, username, password) {
-        event.preventDefault();
-        var body = JSON.stringify({ username: username, password: password });
-        //this.http.post('http://localhost:3001/sessions/create', body, { headers: contentHeaders })
-        //    .subscribe(
-        //    response => {
-        //        localStorage.setItem('jwt', response.json().id_token);
-        //        this.router.parent.navigateByUrl('/home');
-        //    },
-        //    error => {
-        //        alert(error.text());
-        //        console.log(error.text());
-        //    }
-        //    );
+    /**
+     * Méthode de login appelé au clic sur le bouton
+     * Consomme le service user pour la connexion à l'API
+     */
+    LoginComponent.prototype.login = function () {
+        var _this = this;
+        var _authenticationResult = new app_domain_result_1.Result(false, '');
+        this.userService.login(this._user)
+            .subscribe(function (res) {
+            _authenticationResult.Succeeded = res.Succeeded;
+            _authenticationResult.Message = res.Message;
+        }, function (error) { return console.error('Error: ' + error); }, function () {
+            if (_authenticationResult.Succeeded) {
+                localStorage.setItem('user', JSON.stringify(_this._user));
+                _this._router.navigate(['chat']);
+            }
+            else {
+            }
+        });
     };
+    ;
     LoginComponent.prototype.signup = function (event) {
         event.preventDefault();
         this._router.navigateByUrl('/signup');
@@ -50,9 +54,10 @@ var LoginComponent = (function () {
             selector: 'login-cmp',
             templateUrl: './app/components/login/login.component.html',
             styleUrls: ['./app/components/login/login.component.css'],
-            directives: [router_1.ROUTER_DIRECTIVES]
+            directives: [router_1.ROUTER_DIRECTIVES],
+            bindings: [app_service_users_1.UserService]
         }), 
-        __metadata('design:paramtypes', [common_1.FormBuilder, router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, app_service_users_1.UserService])
     ], LoginComponent);
     return LoginComponent;
 }());

@@ -11,15 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
-var http_1 = require('@angular/http');
+var app_service_users_1 = require('../../services/app.service.users');
+var app_domain_registration_1 = require('../../domain/app.domain.registration');
+var app_domain_result_1 = require('../../domain/app.domain.result');
 var SignupComponent = (function () {
-    function SignupComponent(_router, http) {
+    function SignupComponent(_router, userService) {
         this._router = _router;
-        this.http = http;
+        this.userService = userService;
+        this._newUser = new app_domain_registration_1.Registration('', '', '');
     }
     SignupComponent.prototype.signup = function (event, username, password) {
+        var _this = this;
         event.preventDefault();
-        var user = JSON.stringify({ username: username, password: password });
+        var _registrationResult = new app_domain_result_1.Result(false, '');
+        this.userService.register(this._newUser)
+            .subscribe(function (res) {
+            _registrationResult.Succeeded = res.Succeeded;
+            _registrationResult.Message = res.Message;
+        }, function (error) { return console.error('Error: ' + error); }, function () {
+            if (_registrationResult.Succeeded) {
+                // this.notificationService.printSuccessMessage('Dear ' + this._newUser.Username + ', please login with your credentials');
+                _this._router.navigate(['login']);
+            }
+            else {
+            }
+        });
         //this.http.post('http://localhost:3001/users', user, { headers:  })
         //    .subscribe(
         //    response => {
@@ -43,7 +59,7 @@ var SignupComponent = (function () {
             templateUrl: './app/components/signup/signup.component.html',
             styleUrls: ['./app/components/signup/signup.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
+        __metadata('design:paramtypes', [router_1.Router, app_service_users_1.UserService])
     ], SignupComponent);
     return SignupComponent;
 }());

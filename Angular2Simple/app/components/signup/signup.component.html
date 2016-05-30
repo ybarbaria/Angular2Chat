@@ -1,14 +1,29 @@
 ﻿<div class="signup center-block jumbotron">
     <h1>Signup</h1>
-    <form role="form" (submit)="signup($event, username.value, password.value)">
+    <form class="form col-md-12 center-block" #hf="ngForm">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" #username class="form-control" id="username" placeholder="Username">
+            <input type="text" class="form-control input-lg" placeholder="Username" [(ngModel)]="_newUser.Username"
+                   name="username" ngControl="username" required #username="ngForm">
+            <div [hidden]="username.valid || username.untouched" class="alert alert-danger">
+                Username is required
+            </div>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" #password class="form-control" id="password" placeholder="Password">
+            <input type="email" class="form-control input-lg" placeholder="Email" [(ngModel)]="_newUser.Email"
+                   name="email" ngControl="email" required #email="ngForm">
+            <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+                Email is required
+            </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <div class="form-group">
+            <input type="password" class="form-control input-lg" placeholder="Password" [(ngModel)]="_newUser.Password"
+                   name="password" ngControl="password" required #password="ngForm">
+            <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+                Password is required
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg btn-block" (click)="signup()" [disabled]="!hf.form.valid">Register</button>
+        </div>
     </form>
 </div>

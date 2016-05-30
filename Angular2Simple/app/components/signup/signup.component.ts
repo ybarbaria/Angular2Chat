@@ -3,6 +3,14 @@ import { Router} from '@angular/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import { Http } from '@angular/http';
 
+import {DataService} from '../../services/app.service.data';
+import {UserService} from '../../services/app.service.users';
+
+import {Registration} from '../../domain/app.domain.registration';
+import {Result} from '../../domain/app.domain.result';
+import {User} from '../../domain/app.domain.users';
+
+
 @Component({
     selector: 'signup-cmp',
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
@@ -12,12 +20,33 @@ import { Http } from '@angular/http';
 
 export class SignupComponent {
 
-    constructor(public _router: Router, public http: Http) {
+    private _newUser: Registration;
+
+    constructor(public _router: Router, public userService: UserService) {
+        this._newUser = new Registration('', '', '');
     }
 
     signup(event, username, password) {
         event.preventDefault();
-        let user = JSON.stringify({ username, password });
+
+        var _registrationResult: Result = new Result(false, '');
+        this.userService.register(this._newUser)
+            .subscribe(res => {
+                _registrationResult.Succeeded = res.Succeeded;
+                _registrationResult.Message = res.Message;
+
+            },
+            error => console.error('Error: ' + error),
+            () => {
+                if (_registrationResult.Succeeded) {
+                    // this.notificationService.printSuccessMessage('Dear ' + this._newUser.Username + ', please login with your credentials');
+                    this._router.navigate(['login']);
+                }
+                else {
+                    // this.notificationService.printErrorMessage(_registrationResult.Message);
+                }
+            });
+
         //this.http.post('http://localhost:3001/users', user, { headers:  })
         //    .subscribe(
         //    response => {
