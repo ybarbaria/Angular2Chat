@@ -20,8 +20,10 @@ namespace Models.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Message>().HasOptional(m => m.Sender);
-
+            modelBuilder.Entity<Message>()
+                        .HasOptional(m => m.Sender);
+            modelBuilder.Entity<Message>()
+                        .HasOptional(m => m.Recipient);
         }
     }
 }

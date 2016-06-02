@@ -6,6 +6,8 @@ import {TodoListComponent} from '../todolist/todolist.component';
 import {SignupComponent} from '../signup/signup.component';
 import {ChatComponent} from '../chat/chat.component';
 import {ChannelComponent} from '../channel/channel.component';
+import {GrillesComponent} from '../grilles/grilles.component';
+
 import { UserService } from '../../services/app.service.users';
 
 @Component({
@@ -20,7 +22,8 @@ import { UserService } from '../../services/app.service.users';
     { path: '/todolist', component: TodoListComponent },
     { path: '/login', component: LoginComponent },
     { path: '/chat', component: ChatComponent },
-    { path: '/channel', component: ChannelComponent }
+    { path: '/channel', component: ChannelComponent },
+    { path: '/grilles', component: GrillesComponent }
 ])
 
 export class MainComponent {

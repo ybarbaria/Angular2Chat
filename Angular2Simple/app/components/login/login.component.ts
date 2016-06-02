@@ -52,7 +52,6 @@ export class LoginComponent {
                 }
                 else {
                     // error
-                    // this.notificationService.printErrorMessage(_authenticationResult.Message);
                 }
             });
     };

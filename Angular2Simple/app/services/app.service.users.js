@@ -31,7 +31,6 @@ var UserService = (function () {
     * @param creds
     */
     UserService.prototype.login = function (creds) {
-        debugger;
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(JSON.stringify(creds));
     };

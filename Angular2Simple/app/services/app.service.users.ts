@@ -30,7 +30,6 @@ export class UserService {
     * @param creds
     */
     login(creds: User) {
-        debugger;
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(JSON.stringify(creds));
     }

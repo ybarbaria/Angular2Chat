@@ -15,6 +15,7 @@ var todolist_component_1 = require('../todolist/todolist.component');
 var signup_component_1 = require('../signup/signup.component');
 var chat_component_1 = require('../chat/chat.component');
 var channel_component_1 = require('../channel/channel.component');
+var grilles_component_1 = require('../grilles/grilles.component');
 var app_service_users_1 = require('../../services/app.service.users');
 var MainComponent = (function () {
     function MainComponent(userService) {
@@ -34,7 +35,8 @@ var MainComponent = (function () {
             { path: '/todolist', component: todolist_component_1.TodoListComponent },
             { path: '/login', component: login_component_1.LoginComponent },
             { path: '/chat', component: chat_component_1.ChatComponent },
-            { path: '/channel', component: channel_component_1.ChannelComponent }
+            { path: '/channel', component: channel_component_1.ChannelComponent },
+            { path: '/grilles', component: grilles_component_1.GrillesComponent }
         ]), 
         __metadata('design:paramtypes', [app_service_users_1.UserService])
     ], MainComponent);

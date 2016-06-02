@@ -12,8 +12,8 @@ namespace Angular2Simple.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
         public int Id { get; set; }
         public string Text { get; set; }
-        public User Recipient { get; set; }
-        public User Sender { get; set; }
+        public virtual User Recipient { get; set; }
+        public virtual User Sender { get; set; }
         public bool Channel { get; set; }
     }
 }

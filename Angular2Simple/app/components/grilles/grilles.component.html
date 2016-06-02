@@ -1,0 +1,15 @@
+﻿<ig-grid [(ig-options)]="opts"></ig-grid>
+
+<h3 class="first">Basic</h3>
+<p-dataTable [value]="_messages">
+    <p-column field="Text" header="Text"></p-column>
+    <p-column field="Recipient" header="Recipient"></p-column>
+    <p-column field="Sender" header="Sender"></p-column>
+    <p-column field="Channel" header="Channel"></p-column>
+</p-dataTable>
+
+<h3>Dynamic Columns</h3>
+<p-dataTable [value]="_messages">
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+</p-dataTable>
+

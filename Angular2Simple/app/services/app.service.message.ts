@@ -9,7 +9,7 @@ import { Message } from '../domain/app.domain.message';
 export class MessageService {
 
     private _getMessagesAPI: string = 'api/message/getlist';
-
+    private _setMessageAPI: string = 'api/message/send';
     constructor(public messageService: DataService) { }
 
     /**
@@ -17,8 +17,12 @@ export class MessageService {
     * 
     */
     getList() {
-
         this.messageService.set(this._getMessagesAPI);
         return this.messageService.get();
+    }
+
+    sendMessage(mess: Message) {
+        this.messageService.set(this._setMessageAPI);
+        return this.messageService.post(JSON.stringify(mess));
     }
 }

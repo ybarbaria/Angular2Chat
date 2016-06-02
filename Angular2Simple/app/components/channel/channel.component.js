@@ -11,13 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var app_service_message_1 = require('../../services/app.service.message');
 var app_domain_message_1 = require('../../domain/app.domain.message');
+var app_service_users_1 = require('../../services/app.service.users');
 var ChannelComponent = (function () {
-    function ChannelComponent(messageService) {
+    function ChannelComponent(messageService, userService) {
         this.messageService = messageService;
-        var mess1 = new app_domain_message_1.Message("ybar", true, "test1");
-        var mess2 = new app_domain_message_1.Message("ybar", true, "test1");
-        var mess3 = new app_domain_message_1.Message("ybar", true, "test1");
+        this.userService = userService;
+        this.username = userService.getLoggedInUser().Username;
         this.getMessages();
+        this.message = new app_domain_message_1.Message("", true, "");
+        this.message.Sender = this.username;
     }
     ChannelComponent.prototype.getMessages = function () {
         var _this = this;
@@ -25,11 +27,6 @@ var ChannelComponent = (function () {
             .subscribe(function (res) {
             var data = res.json();
             _this.messages = data;
-            //this._displayingTotal = this._photos.length;
-            //this._page = data.Page;
-            //this._pagesCount = data.TotalPages;
-            //this._totalCount = data.TotalCount;
-            //this._albumTitle = this._photos[0].AlbumTitle;
         }, function (error) {
             if (error.status == 401 || error.status == 302) {
             }
@@ -37,27 +34,22 @@ var ChannelComponent = (function () {
         }, function () { return console.log(_this.messages); });
     };
     ChannelComponent.prototype.send = function () {
+        var _this = this;
         // Send message vers le serveur
-        //this.http.post('http://localhost:3001/users', user, { headers:  })
-        //    .subscribe(
-        //    response => {
-        //        localStorage.setItem('jwt', response.json().id_token);
-        //        this.router.parent.navigateByUrl('/home');
-        //    },
-        //    error => {
-        //        alert(error.text());
-        //        console.log(error.text());
-        //    }
-        //    );
+        this.messageService.sendMessage(this.message)
+            .subscribe(function (res) {
+            _this.getMessages();
+        }, function (error) { return console.error('Error: ' + error); }, function () {
+        });
     };
     ChannelComponent = __decorate([
         core_1.Component({
             selector: 'channel-cmp',
             templateUrl: './app/components/channel/channel.component.html',
             styleUrls: ['./app/components/channel/channel.component.css'],
-            bindings: [app_service_message_1.MessageService]
+            providers: [app_service_message_1.MessageService, app_service_users_1.UserService]
         }), 
-        __metadata('design:paramtypes', [app_service_message_1.MessageService])
+        __metadata('design:paramtypes', [app_service_message_1.MessageService, app_service_users_1.UserService])
     ], ChannelComponent);
     return ChannelComponent;
 }());

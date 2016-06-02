@@ -14,6 +14,7 @@ var MessageService = (function () {
     function MessageService(messageService) {
         this.messageService = messageService;
         this._getMessagesAPI = 'api/message/getlist';
+        this._setMessageAPI = 'api/message/send';
     }
     /**
     *
@@ -22,6 +23,10 @@ var MessageService = (function () {
     MessageService.prototype.getList = function () {
         this.messageService.set(this._getMessagesAPI);
         return this.messageService.get();
+    };
+    MessageService.prototype.sendMessage = function (mess) {
+        this.messageService.set(this._setMessageAPI);
+        return this.messageService.post(JSON.stringify(mess));
     };
     MessageService = __decorate([
         core_1.Injectable(), 
