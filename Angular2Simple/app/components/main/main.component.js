@@ -15,16 +15,19 @@ var todolist_component_1 = require('../todolist/todolist.component');
 var signup_component_1 = require('../signup/signup.component');
 var chat_component_1 = require('../chat/chat.component');
 var channel_component_1 = require('../channel/channel.component');
+var app_service_users_1 = require('../../services/app.service.users');
 var MainComponent = (function () {
-    function MainComponent() {
+    function MainComponent(userService) {
+        this.userService = userService;
         this.title = 'My Chat';
+        this.isLogged = userService.isUserAuthenticated();
     }
     MainComponent = __decorate([
         core_1.Component({
             selector: 'main-cmp',
             templateUrl: './app/components/main/main.component.html',
             directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [router_1.ROUTER_PROVIDERS]
+            providers: [router_1.ROUTER_PROVIDERS, app_service_users_1.UserService]
         }),
         router_1.Routes([
             { path: '/signup', component: signup_component_1.SignupComponent },
@@ -33,7 +36,7 @@ var MainComponent = (function () {
             { path: '/chat', component: chat_component_1.ChatComponent },
             { path: '/channel', component: channel_component_1.ChannelComponent }
         ]), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [app_service_users_1.UserService])
     ], MainComponent);
     return MainComponent;
 }());

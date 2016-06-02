@@ -16,6 +16,13 @@ export class ChatComponent {
     constructor(public http: Http) {
     }
 
+    /**
+     * Permet de récupérer les messages du channel
+     */
+    getAll() {
+
+    }
+
     send() {
         // Send message vers le serveur
         //this.http.post('http://localhost:3001/users', user, { headers:  })

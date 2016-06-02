@@ -13,20 +13,23 @@
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
-                <li>
-                    <a [routerLink]="['chat']">Chat</a>
+                <li *ngIf="isLogged">
+                    <a [routerLink]="['/chat']">Chat</a>
                 </li>
-                <li>
-                    <a [routerLink]="['channel']">Channel</a>
+                <li *ngIf="isLogged">
+                    <a [routerLink]="['/channel']">Channel</a>
                 </li>
-                <li>
-                    <a [routerLink]="['profile']">Profile</a>
+                <li *ngIf="isLogged">
+                    <a [routerLink]="['/profile']">Profile</a>
                 </li>
-                <li>
-                    <a [routerLink]="['login']">Login</a>
+                <li *ngIf="!isLogged">
+                    <a [routerLink]="['/login']">Login</a>
                 </li>
-                <li>
-                    <a [routerLink]="['logout']">Logout</a>
+                <li *ngIf="isLogged">
+                    <a [routerLink]="['/logout']">Logout</a>
+                </li>
+                <li *ngIf="isLogged">
+                    <a [routerLink]="['/todolist']">Test</a>
                 </li>
             </ul>
         </nav>

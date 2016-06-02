@@ -10,47 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var app_service_data_1 = require('./app.service.data');
-var app_domain_users_1 = require('../domain/app.domain.users');
 var UserService = (function () {
-    function UserService(accountService) {
-        this.accountService = accountService;
-        this._accountRegisterAPI = 'api/account/register';
-        this._accountLoginAPI = 'api/account/login';
-        this._accountLogoutAPI = 'api/account/logout';
+    function UserService(messageService) {
+        this.messageService = messageService;
+        this._getMessagesAPI = 'api/message/getlist';
     }
     /**
     *
-    * @param newUser
+    *
     */
-    UserService.prototype.register = function (newUser) {
-        this.accountService.set(this._accountRegisterAPI);
-        return this.accountService.post(JSON.stringify(newUser));
-    };
-    /**
-    * Méthode d'authentification vers l'API
-    * @param creds
-    */
-    UserService.prototype.login = function (creds) {
-        debugger;
-        this.accountService.set(this._accountLoginAPI);
-        return this.accountService.post(JSON.stringify(creds));
-    };
-    /**
-     *
-     */
-    UserService.prototype.logout = function () {
-        this.accountService.set(this._accountLogoutAPI);
-        return this.accountService.post(null, false);
-    };
-    /**
-     *
-     */
-    UserService.prototype.isUserAuthenticated = function () {
-        var _user = localStorage.getItem('user');
-        if (_user != null)
-            return true;
-        else
-            return false;
+    UserService.prototype.getList = function () {
+        this.messageService.set(this._getMessagesAPI);
+        return this.messageService.get();
     };
     /**
      *
@@ -59,7 +30,7 @@ var UserService = (function () {
         var _user;
         if (this.isUserAuthenticated()) {
             var _userData = JSON.parse(localStorage.getItem('user'));
-            _user = new app_domain_users_1.User(_userData.Username, _userData.Password);
+            _user = new User(_userData.Username, _userData.Password);
         }
         return _user;
     };
@@ -70,4 +41,4 @@ var UserService = (function () {
     return UserService;
 }());
 exports.UserService = UserService;
-//# sourceMappingURL=app.service.users.js.map
+//# sourceMappingURL=app.service.js.map

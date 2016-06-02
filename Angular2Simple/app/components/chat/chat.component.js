@@ -15,6 +15,11 @@ var ChatComponent = (function () {
     function ChatComponent(http) {
         this.http = http;
     }
+    /**
+     * Permet de récupérer les messages du channel
+     */
+    ChatComponent.prototype.getAll = function () {
+    };
     ChatComponent.prototype.send = function () {
         // Send message vers le serveur
         //this.http.post('http://localhost:3001/users', user, { headers:  })

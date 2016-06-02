@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+//import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 var app_domain_users_1 = require('../../domain/app.domain.users');
 var app_domain_result_1 = require('../../domain/app.domain.result');
 var app_service_users_1 = require('../../services/app.service.users');
@@ -38,7 +39,7 @@ var LoginComponent = (function () {
         }, function (error) { return console.error('Error: ' + error); }, function () {
             if (_authenticationResult.Succeeded) {
                 localStorage.setItem('user', JSON.stringify(_this._user));
-                _this._router.navigate(['chat']);
+                _this._router.navigate(['/chat']);
             }
             else {
             }

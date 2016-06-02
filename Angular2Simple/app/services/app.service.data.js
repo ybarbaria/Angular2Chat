@@ -18,15 +18,20 @@ var DataService = (function () {
         this._baseUri = baseUri;
         this._pageSize = pageSize;
     };
-    DataService.prototype.get = function (page) {
-        var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
-        return this.http.get(uri)
-            .map(function (response) { return (response); });
+    //get(page: number) {
+    //    var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
+    //    return this.http.get(uri)
+    //        .map(response => (<Response>response));
+    //}
+    DataService.prototype.get = function () {
+        return this.http.get(this._baseUri).map(function (response) { return (response); });
     };
     DataService.prototype.post = function (data, mapJson) {
         if (mapJson === void 0) { mapJson = true; }
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
         if (mapJson)
-            return this.http.post(this._baseUri, data)
+            return this.http.post(this._baseUri, data, options)
                 .map(function (response) { return response.json(); });
         else
             return this.http.post(this._baseUri, data);

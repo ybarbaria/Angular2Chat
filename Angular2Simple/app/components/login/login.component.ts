@@ -3,6 +3,8 @@ import {FormBuilder, Control, ControlGroup, Validators} from '@angular/common';
 import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import { Http, Headers } from '@angular/http';
+//import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+
 import { User } from '../../domain/app.domain.users';
 import {Result} from '../../domain/app.domain.result';
 import { UserService } from '../../services/app.service.users';
@@ -16,11 +18,8 @@ import { UserService } from '../../services/app.service.users';
 })
 
 export class LoginComponent {
-
-    //private routes = Routes;
-    //private _router: Router;
+   
     private _user: User;
-
 
     /**
      * Constructeur du composant de login
@@ -47,7 +46,8 @@ export class LoginComponent {
             () => {
                 if (_authenticationResult.Succeeded) {
                     localStorage.setItem('user', JSON.stringify(this._user));
-                    this._router.navigate(['chat']);
+
+                    this._router.navigate(['/chat']);
                     // Succes
                 }
                 else {

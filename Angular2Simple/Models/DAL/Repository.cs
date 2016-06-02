@@ -8,13 +8,19 @@
 
     public class Repository
     {
-        private TodoListContext dbContext;
+        private ChatContext dbContext;
         private IValidationDictionary validation;
 
         public Repository(IValidationDictionary validation)
         {
-            this.dbContext = new TodoListContext();
+            this.dbContext = new ChatContext();
             this.validation = validation;
+        }
+
+
+        public Repository()
+        {
+            this.dbContext = new ChatContext();
         }
 
         public DbSet<T> Entity<T>()

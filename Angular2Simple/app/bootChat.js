@@ -10,4 +10,4 @@ var main_component_1 = require('./components/main/main.component');
 var appPromise = platform_browser_dynamic_1.bootstrap(main_component_1.MainComponent, [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, app_service_data_1.DataService, app_service_todolist_1.AppServiceTodoList, LocalStorageEmitter_1.LocalStorageService]);
 // register LocalStorage, permet de détécter les changement
 LocalStorageEmitter_1.LocalStorageSubscriber(appPromise);
-//# sourceMappingURL=boottodolist.js.map
+//# sourceMappingURL=bootChat.js.map

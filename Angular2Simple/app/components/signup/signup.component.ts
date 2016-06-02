@@ -15,7 +15,8 @@ import {User} from '../../domain/app.domain.users';
     selector: 'signup-cmp',
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
     templateUrl: './app/components/signup/signup.component.html',
-    styleUrls: ['./app/components/signup/signup.component.css']
+    styleUrls: ['./app/components/signup/signup.component.css'],
+    bindings: [UserService]
 })
 
 export class SignupComponent {
@@ -27,7 +28,7 @@ export class SignupComponent {
     }
 
     signup(event, username, password) {
-        event.preventDefault();
+        // event.preventDefault();
 
         var _registrationResult: Result = new Result(false, '');
         this.userService.register(this._newUser)

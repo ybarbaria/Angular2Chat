@@ -9,11 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
+var app_service_message_1 = require('../../services/app.service.message');
+var app_domain_message_1 = require('../../domain/app.domain.message');
 var ChannelComponent = (function () {
-    function ChannelComponent(http) {
-        this.http = http;
+    function ChannelComponent(messageService) {
+        this.messageService = messageService;
+        var mess1 = new app_domain_message_1.Message("ybar", true, "test1");
+        var mess2 = new app_domain_message_1.Message("ybar", true, "test1");
+        var mess3 = new app_domain_message_1.Message("ybar", true, "test1");
+        this.getMessages();
     }
+    ChannelComponent.prototype.getMessages = function () {
+        var _this = this;
+        this.messageService.getList()
+            .subscribe(function (res) {
+            var data = res.json();
+            _this.messages = data;
+            //this._displayingTotal = this._photos.length;
+            //this._page = data.Page;
+            //this._pagesCount = data.TotalPages;
+            //this._totalCount = data.TotalCount;
+            //this._albumTitle = this._photos[0].AlbumTitle;
+        }, function (error) {
+            if (error.status == 401 || error.status == 302) {
+            }
+            console.error('Error: ' + error);
+        }, function () { return console.log(_this.messages); });
+    };
     ChannelComponent.prototype.send = function () {
         // Send message vers le serveur
         //this.http.post('http://localhost:3001/users', user, { headers:  })
@@ -32,9 +54,10 @@ var ChannelComponent = (function () {
         core_1.Component({
             selector: 'channel-cmp',
             templateUrl: './app/components/channel/channel.component.html',
-            styleUrls: ['./app/components/channel/channel.component.css']
+            styleUrls: ['./app/components/channel/channel.component.css'],
+            bindings: [app_service_message_1.MessageService]
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [app_service_message_1.MessageService])
     ], ChannelComponent);
     return ChannelComponent;
 }());

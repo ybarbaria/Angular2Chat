@@ -8,9 +8,9 @@ import { User } from '../domain/app.domain.users';
 @Injectable()
 export class UserService {
 
-    private _accountRegisterAPI: string = 'api/account/register/';
-    private _accountLoginAPI: string = 'api/account/authenticate/';
-    private _accountLogoutAPI: string = 'api/account/logout/';
+    private _accountRegisterAPI: string = 'api/account/register';
+    private _accountLoginAPI: string = 'api/account/login';
+    private _accountLogoutAPI: string = 'api/account/logout';
 
     constructor(public accountService: DataService) { }
 
@@ -30,6 +30,7 @@ export class UserService {
     * @param creds
     */
     login(creds: User) {
+        debugger;
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(JSON.stringify(creds));
     }

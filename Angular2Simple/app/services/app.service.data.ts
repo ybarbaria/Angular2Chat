@@ -1,4 +1,4 @@
-﻿import { Http, Response } from '@angular/http';
+﻿import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -17,16 +17,24 @@ export class DataService {
         this._pageSize = pageSize;
     }
 
-    get(page: number) {
-        var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
+    //get(page: number) {
+    //    var uri = this._baseUri + page.toString() + '/' + this._pageSize.toString();
 
-        return this.http.get(uri)
-            .map(response => (<Response>response));
+    //    return this.http.get(uri)
+    //        .map(response => (<Response>response));
+    //}
+
+    get() {
+        return this.http.get(this._baseUri).map(response => (<Response>response));
     }
 
     post(data?: any, mapJson: boolean = true) {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
         if (mapJson)
-            return this.http.post(this._baseUri, data)
+            return this.http.post(this._baseUri, data, options)
                 .map(response => <any>(<Response>response).json());
         else
             return this.http.post(this._baseUri, data);

@@ -21,8 +21,8 @@ var SignupComponent = (function () {
         this._newUser = new app_domain_registration_1.Registration('', '', '');
     }
     SignupComponent.prototype.signup = function (event, username, password) {
+        // event.preventDefault();
         var _this = this;
-        event.preventDefault();
         var _registrationResult = new app_domain_result_1.Result(false, '');
         this.userService.register(this._newUser)
             .subscribe(function (res) {
@@ -57,7 +57,8 @@ var SignupComponent = (function () {
             selector: 'signup-cmp',
             directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
             templateUrl: './app/components/signup/signup.component.html',
-            styleUrls: ['./app/components/signup/signup.component.css']
+            styleUrls: ['./app/components/signup/signup.component.css'],
+            bindings: [app_service_users_1.UserService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, app_service_users_1.UserService])
     ], SignupComponent);
