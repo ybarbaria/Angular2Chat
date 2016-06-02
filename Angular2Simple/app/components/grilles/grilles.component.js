@@ -43,20 +43,7 @@ exports.IgGrid = IgGrid;
 var GrillesComponent = (function () {
     function GrillesComponent(messageSrv) {
         this.messageSrv = messageSrv;
-        this.opts = {
-            caption: "Angular2 InigniteUI Infragistics",
-            primaryKey: "Id",
-            dataSource: [
-                { "Id": 1, "Name": "John Smith", "Age": 45 },
-                { "Id": 2, "Name": "Mary Johnson", "Age": 32 },
-                { "Id": 3, "Name": "Bob Ferguson", "Age": 27 }
-            ],
-            columns: [
-                { headerText: "Id", key: "Id", dataType: "number", hidden: true },
-                { headerText: "Name", key: "Name", dataType: "string" },
-                { headerText: "Age", key: "Age", dataType: "number" }
-            ]
-        };
+        this.fisrtIgniteUi();
     }
     GrillesComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -74,7 +61,23 @@ var GrillesComponent = (function () {
             if (error.status == 401 || error.status == 302) {
             }
             console.error('Error: ' + error);
-        }, function () { return console.log(_this.messages); });
+        }, function () { return console.log(self._messages); });
+    };
+    GrillesComponent.prototype.fisrtIgniteUi = function () {
+        this.opts = {
+            caption: "Angular2 InigniteUI Infragistics",
+            primaryKey: "Id",
+            dataSource: [
+                { "Id": 1, "Name": "John Smith", "Age": 45 },
+                { "Id": 2, "Name": "Mary Johnson", "Age": 32 },
+                { "Id": 3, "Name": "Bob Ferguson", "Age": 27 }
+            ],
+            columns: [
+                { headerText: "Id", key: "Id", dataType: "number", hidden: true },
+                { headerText: "Name", key: "Name", dataType: "string" },
+                { headerText: "Age", key: "Age", dataType: "number" }
+            ]
+        };
     };
     GrillesComponent = __decorate([
         core_1.Component({

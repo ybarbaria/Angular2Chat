@@ -43,25 +43,12 @@ export class IgGrid {
 })
 
 export class GrillesComponent implements OnInit{
-    opts: any;
-    _messages: Message[];
-    cols: any[];
+    private opts: any;
+    private _messages: Message[];
+    private cols: any[];
 
     constructor(private messageSrv : MessageService) {
-        this.opts = {
-            caption: "Angular2 InigniteUI Infragistics",
-            primaryKey: "Id",
-            dataSource: [
-                { "Id": 1, "Name": "John Smith", "Age": 45 },
-                { "Id": 2, "Name": "Mary Johnson", "Age": 32 },
-                { "Id": 3, "Name": "Bob Ferguson", "Age": 27 }
-            ],
-            columns: [
-                { headerText: "Id", key: "Id", dataType: "number", hidden: true },
-                { headerText: "Name", key: "Name", dataType: "string" },
-                { headerText: "Age", key: "Age", dataType: "number" }
-            ]
-        };
+        this.fisrtIgniteUi();
     }
 
     ngOnInit() {
@@ -84,9 +71,26 @@ export class GrillesComponent implements OnInit{
                 }
                 console.error('Error: ' + error)
             },
-            () => console.log(this.messages));
-
-        
+            () => console.log(self._messages));   
     }
 
+
+    fisrtIgniteUi(): void{
+        this.opts = {
+            caption: "Angular2 InigniteUI Infragistics",
+            primaryKey: "Id",
+            dataSource: [
+                { "Id": 1, "Name": "John Smith", "Age": 45 },
+                { "Id": 2, "Name": "Mary Johnson", "Age": 32 },
+                { "Id": 3, "Name": "Bob Ferguson", "Age": 27 }
+            ],
+            columns: [
+                { headerText: "Id", key: "Id", dataType: "number", hidden: true },
+                { headerText: "Name", key: "Name", dataType: "string" },
+                { headerText: "Age", key: "Age", dataType: "number" }
+            ]
+        };
+    }
+
+    
 }

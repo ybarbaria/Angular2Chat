@@ -7,6 +7,8 @@ import {SignupComponent} from '../signup/signup.component';
 import {ChatComponent} from '../chat/chat.component';
 import {ChannelComponent} from '../channel/channel.component';
 import {GrillesComponent} from '../grilles/grilles.component';
+import {ChartsComponent} from '../charts/charts.component';
+
 
 import { UserService } from '../../services/app.service.users';
 
@@ -23,7 +25,8 @@ import { UserService } from '../../services/app.service.users';
     { path: '/login', component: LoginComponent },
     { path: '/chat', component: ChatComponent },
     { path: '/channel', component: ChannelComponent },
-    { path: '/grilles', component: GrillesComponent }
+    { path: '/grilles', component: GrillesComponent },
+    { path: '/charts', component: ChartsComponent },
 ])
 
 export class MainComponent {

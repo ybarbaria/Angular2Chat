@@ -201,6 +201,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\components\channel\channel.component.html" />
+    <Content Include="app\components\charts\charts.component.html" />
+    <Content Include="app\components\charts\charts.component.css" />
     <Content Include="app\components\chat\chat.component.css" />
     <Content Include="app\components\chat\chat.component.html" />
     <Content Include="app\components\grilles\grilles.component.html" />
@@ -209,6 +211,7 @@
     <Content Include="app\components\login\login.component.html" />
     <Content Include="app\components\signup\signup.component.css" />
     <Content Include="app\components\signup\signup.component.html" />
+    <TypeScriptCompile Include="app\components\charts\charts.component.ts" />
     <TypeScriptCompile Include="app\components\grilles\grilles.component.ts" />
     <TypeScriptCompile Include="app\components\grilles\iggrid.component.ts" />
     <TypeScriptCompile Include="app\domain\app.domain.result.ts" />
