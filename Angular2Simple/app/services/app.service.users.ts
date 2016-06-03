@@ -37,9 +37,11 @@ export class UserService {
     /**
      * 
      */
-    logout() {
-        this.accountService.set(this._accountLogoutAPI);
-        return this.accountService.post(null, false);
+    logout() : void{
+        // this.accountService.set(this._accountLogoutAPI);
+        localStorage.removeItem('user');
+
+        // return this.accountService.post(null, false);
     }
 
     /**

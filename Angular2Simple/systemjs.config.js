@@ -1,47 +1,55 @@
-(function(global) {
+(function (global) {
 
-  // map tells the System loader where to look for things
-  var map = {
-    'app':                        'app', // 'dist',
-    'rxjs':                       'node_modules/rxjs',
-    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    '@angular':                   'node_modules/@angular',
-    'ng2-charts': 'node_modules/ng2-charts'
-  };
+    // map tells the System loader where to look for things
+    var map = {
+        'app': 'app', // 'dist',
+        'rxjs': 'node_modules/rxjs',
+        'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+        '@angular': 'node_modules/@angular',
+        'ng2-charts': 'node_modules/ng2-charts',
+        'ag-grid': 'node_modules/ag-grid',
+        'ag-grid-ng2': 'node_modules/ag-grid-ng2'
+    };
 
-  // packages tells the System loader how to load when no filename and/or no extension
-  var packages = {
-    'app':                        { main: 'bootToChat.js',  defaultExtension: 'js' },
-    'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' },
-    'ng2-charts': {
-        defaultExtension: 'js'
+    // packages tells the System loader how to load when no filename and/or no extension
+    var packages = {
+        'app': { main: 'bootToChat.js', defaultExtension: 'js' },
+        'rxjs': { defaultExtension: 'js' },
+        'angular2-in-memory-web-api': { defaultExtension: 'js' },
+        'ng2-charts': {
+            defaultExtension: 'js'
+        },
+        'ag-grid': {
+            defaultExtension: 'js'
+        },
+        'ag-grid-ng2': {
+            defaultExtension: 'js'
+        },
+    };
+
+    var packageNames = [
+      '@angular/common',
+      '@angular/compiler',
+      '@angular/core',
+      '@angular/http',
+      '@angular/platform-browser',
+      '@angular/platform-browser-dynamic',
+      '@angular/router',
+      '@angular/router-deprecated',
+      '@angular/testing',
+      '@angular/upgrade',
+    ];
+
+    // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
+    packageNames.forEach(function (pkgName) {
+        packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
+    });
+
+    var config = {
+        map: map,
+        packages: packages
     }
-  };
 
-  var packageNames = [
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/core',
-    '@angular/http',
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/router',
-    '@angular/router-deprecated',
-    '@angular/testing',
-    '@angular/upgrade',
-  ];
+    System.config(config);
 
-  // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
-  packageNames.forEach(function(pkgName) {
-    packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
-  });
-
-  var config = {
-    map: map,
-    packages: packages
-  }
-
-  System.config(config);
-
-})(this);    
+})(this);

@@ -63,6 +63,7 @@ var ChartsComponent = (function () {
         ];
         this.lineChartLegend = true;
         this.lineChartType = 'line';
+        this.chartIgniteUi();
     }
     ChartsComponent.prototype.randomize = function () {
         var _lineChartData = new Array(this.lineChartData.length);

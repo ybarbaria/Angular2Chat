@@ -38,8 +38,9 @@ var UserService = (function () {
      *
      */
     UserService.prototype.logout = function () {
-        this.accountService.set(this._accountLogoutAPI);
-        return this.accountService.post(null, false);
+        // this.accountService.set(this._accountLogoutAPI);
+        localStorage.removeItem('user');
+        // return this.accountService.post(null, false);
     };
     /**
      *

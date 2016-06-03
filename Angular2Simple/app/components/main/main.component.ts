@@ -8,6 +8,7 @@ import {ChatComponent} from '../chat/chat.component';
 import {ChannelComponent} from '../channel/channel.component';
 import {GrillesComponent} from '../grilles/grilles.component';
 import {ChartsComponent} from '../charts/charts.component';
+import {LogoutComponent} from '../logout/logout.component';
 
 
 import { UserService } from '../../services/app.service.users';
@@ -27,6 +28,7 @@ import { UserService } from '../../services/app.service.users';
     { path: '/channel', component: ChannelComponent },
     { path: '/grilles', component: GrillesComponent },
     { path: '/charts', component: ChartsComponent },
+    { path: '/logout', component: LogoutComponent }
 ])
 
 export class MainComponent {

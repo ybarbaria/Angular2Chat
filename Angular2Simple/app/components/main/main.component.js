@@ -17,6 +17,7 @@ var chat_component_1 = require('../chat/chat.component');
 var channel_component_1 = require('../channel/channel.component');
 var grilles_component_1 = require('../grilles/grilles.component');
 var charts_component_1 = require('../charts/charts.component');
+var logout_component_1 = require('../logout/logout.component');
 var app_service_users_1 = require('../../services/app.service.users');
 var MainComponent = (function () {
     function MainComponent(userService) {
@@ -39,6 +40,7 @@ var MainComponent = (function () {
             { path: '/channel', component: channel_component_1.ChannelComponent },
             { path: '/grilles', component: grilles_component_1.GrillesComponent },
             { path: '/charts', component: charts_component_1.ChartsComponent },
+            { path: '/logout', component: logout_component_1.LogoutComponent }
         ]), 
         __metadata('design:paramtypes', [app_service_users_1.UserService])
     ], MainComponent);

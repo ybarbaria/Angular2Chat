@@ -1,5 +1,12 @@
-﻿<ig-grid [(ig-options)]="opts"></ig-grid>
+﻿<h2>Infragistics</h2>
+<div class="col-md-12">
+    <ig-grid [(ig-options)]="opts"></ig-grid>
+</div>
 
+<h2>Ng Grid</h2>
+<div class="col-md-12">
+    <ag-grid-ng2 class="ag-dark" style="height: 500px" [rowGroupPanelShow]="always" [columnDefs]="columnDefs" [rowData]="rowData"></ag-grid-ng2>
+</div>
 
 <!--<h3 class="first">Basic</h3>
 <p-dataTable [value]="_messages">
@@ -13,4 +20,3 @@
 <p-dataTable [value]="_messages">
     <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
 </p-dataTable>-->
-

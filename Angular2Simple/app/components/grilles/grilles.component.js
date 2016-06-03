@@ -12,6 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = require('@angular/core');
+var main_1 = require('ag-grid-ng2/main');
 var app_service_message_1 = require('../../services/app.service.message');
 var IgGrid = (function () {
     function IgGrid(elementRef) {
@@ -43,6 +44,28 @@ exports.IgGrid = IgGrid;
 var GrillesComponent = (function () {
     function GrillesComponent(messageSrv) {
         this.messageSrv = messageSrv;
+        this.columnDefs = [
+            { headerName: "Make", field: "make" },
+            { headerName: "Model", field: "model" },
+            {
+                headerName: "Price",
+                field: "price",
+                cellClass: 'rightJustify',
+                cellRenderer: function (params) {
+                    return '$' + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+            }
+        ];
+        // put data directly onto the controller
+        this.rowData = [
+            { make: "Toyota", model: "Celica", price: 35000 },
+            { make: "Ford", model: "Mondeo", price: 32000 },
+            { make: "Porsche", model: "Boxter", price: 72000 }
+        ];
+        this.GridOptions = {
+            columnDefs: this.columnDefs,
+            rowData: this.rowData
+        };
         this.fisrtIgniteUi();
     }
     GrillesComponent.prototype.ngOnInit = function () {
@@ -83,7 +106,7 @@ var GrillesComponent = (function () {
         core_1.Component({
             selector: 'grilles-cmp',
             templateUrl: './app/components/grilles/grilles.component.html',
-            directives: [IgGrid],
+            directives: [IgGrid, main_1.AgGridNg2],
             providers: [app_service_message_1.MessageService]
         }), 
         __metadata('design:paramtypes', [app_service_message_1.MessageService])

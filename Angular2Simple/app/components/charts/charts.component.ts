@@ -2,6 +2,7 @@
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {Component} from '@angular/core';
 
+declare var jQuery: any;
 
 @Component({
     selector: 'charts-cmp',
@@ -17,6 +18,7 @@ export class ChartsComponent  {
     private zoombarOptions: any;
 
     constructor() {
+        this.chartIgniteUi();
     }
 
     public barChartOptions: any = {

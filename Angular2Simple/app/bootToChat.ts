@@ -9,6 +9,8 @@ import {MainComponent} from './components/main/main.component';
 
 //enableProdMode();
 
+//ag.grid.initialiseAgGridWithAngular2({ core: core });
+
 var appPromise = bootstrap(MainComponent, [HTTP_PROVIDERS, ROUTER_PROVIDERS, DataService, AppServiceTodoList]); 
 
 // register LocalStorage, permet de détécter les changement

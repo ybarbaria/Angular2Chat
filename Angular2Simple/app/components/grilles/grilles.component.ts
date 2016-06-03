@@ -4,6 +4,8 @@ import { Http, Headers } from '@angular/http';
 import {Component, Inject, ElementRef, OnInit} from '@angular/core';
 import {DataTable} from 'primeng/primeng';
 import {Column} from 'primeng/primeng';
+import {AgGridNg2} from 'ag-grid-ng2/main';
+import {GridOptions} from "ag-grid/main";
 
 import {MessageService} from '../../services/app.service.message';
 import {Message} from '../../domain/app.domain.message';
@@ -33,12 +35,10 @@ export class IgGrid {
     }
 }
 
-
-
 @Component({
     selector: 'grilles-cmp',
     templateUrl: './app/components/grilles/grilles.component.html',
-    directives: [IgGrid],
+    directives: [IgGrid, AgGridNg2],
     providers: [MessageService]
 })
 
@@ -46,6 +46,29 @@ export class GrillesComponent implements OnInit{
     private opts: any;
     private _messages: Message[];
     private cols: any[];
+
+    columnDefs = [
+        { headerName: "Make", field: "make" },
+        { headerName: "Model", field: "model" },
+        {
+            headerName: "Price",
+            field: "price",
+            cellClass: 'rightJustify',
+            cellRenderer: function (params: any) {
+                return '$' + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
+    ];
+    // put data directly onto the controller
+    rowData = [
+        { make: "Toyota", model: "Celica", price: 35000 },
+        { make: "Ford", model: "Mondeo", price: 32000 },
+        { make: "Porsche", model: "Boxter", price: 72000 }
+    ];
+    GridOptions: GridOptions = {
+        columnDefs: this.columnDefs,
+        rowData: this.rowData
+    }
 
     constructor(private messageSrv : MessageService) {
         this.fisrtIgniteUi();
